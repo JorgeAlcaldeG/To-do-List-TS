@@ -1,6 +1,9 @@
 # React + TypeScript To-Do list (WORK IN PROGRESS)
 
-This is a project is a personal practice aimed to reinforce my knowledge in **React** with **TypeScript** applying fundamental concepts such as prop and state typing, use of hooks, and component structuring.
+This project was created as a personal exercise to strengthen my knowledge of **React** and **TypeScript**.  
+The goal is to build a functional application where I can practice key concepts such as typing props, state and functions, creating reusable components and using hooks.
+
+It is currently in its early development stage.
 
 ## Objective
 
@@ -12,7 +15,7 @@ Create a To-do list app witch allows to:
 - Save data using localStorage
 - Responsive design
 
-Technologies used:
+## Technologies used
 
 - React
 - TypeScript
