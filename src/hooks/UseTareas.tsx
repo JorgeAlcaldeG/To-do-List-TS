@@ -11,7 +11,8 @@ export interface Tarea{
 export default function UseTareas(){
     const [tareas,setTareas] = useState<Tarea[]>([]);
     useEffect(()=>{
-        const data= localStorage.getItem('tareas');
+        // localStorage.removeItem("tareas");
+        var data= localStorage.getItem('tareas');
         if(data){
             const tareasGuardadas:Tarea[] = JSON.parse(data)
             setTareas(tareasGuardadas);

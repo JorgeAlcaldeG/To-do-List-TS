@@ -1,11 +1,15 @@
 import './App.css'
-import UseTareas from './hooks/useTareas';
+import UseTareas from './hooks/UseTareas';
+import Input from './components/Input.tsx'
 function App() {
-  const { tareas, addTarea} = UseTareas();
+  const { tareas, addTarea } = UseTareas();
   return (
-    <>
-      <button onClick={()=>{addTarea("test")}}>Crear</button>
-    </>
+    <div className="appContainer">
+      <Input add={addTarea}/>
+        {tareas?.map(data => (
+          <div key={data.id}>{data.name}</div>
+        ))}
+    </div>
   )
 }
 
