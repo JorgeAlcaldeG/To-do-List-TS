@@ -1,1 +1,6 @@
 @import "tailwindcss";
+input{
+    outline-style: none;
+    box-shadow: none;
+}
+@custom-variant dark (&:where(.dark, .dark *));
