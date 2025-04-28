@@ -1,7 +1,9 @@
 import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+// Estados de la tarea
 export type estadoTarea = 'pendiente' | 'progeso' | 'terminada'
+// Objeto tareas
 export interface Tarea{
     id:string,
     name:string,
@@ -10,17 +12,24 @@ export interface Tarea{
 
 export default function UseTareas(){
     const [tareas,setTareas] = useState<Tarea[]>([]);
+    // Gestión de las tareas almacenadas en local storage
     useEffect(()=>{
-        // localStorage.removeItem("tareas");
+        // localStorage.removeItem("tareas"); // DEBUG
         var data= localStorage.getItem('tareas');
+        // Existen datos en localStorage?
         if(data){
             const tareasGuardadas:Tarea[] = JSON.parse(data)
             setTareas(tareasGuardadas);
         }
     },[])
+    // Almacenamiento de las tareas en localStorage cuando se actualiza el state tareas
     useEffect(()=>{
         localStorage.setItem('tareas', JSON.stringify(tareas))
     },[tareas])
+
+    // Finciones para gestionar las tareas
+
+    // Creación
     function addTarea(texto:string){
         const newId = uuidv4()
         const newTarea:Tarea = {
@@ -30,9 +39,15 @@ export default function UseTareas(){
         } 
         setTareas([...tareas, newTarea]);
     }
+    // Borrado individual
+    function delTarea(idTask:string){
+        const taskTemp = tareas.filter(tarea => !tarea.id.includes(idTask))
+        setTareas(taskTemp);
+    }
+    // Borrado general
     function delAllTareas(){
         localStorage.removeItem('tareas');
         setTareas([]);
     }
-    return { tareas, addTarea, delAllTareas };
+    return { tareas, addTarea, delAllTareas, delTarea };
 }

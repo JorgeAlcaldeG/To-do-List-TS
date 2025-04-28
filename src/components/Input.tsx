@@ -1,16 +1,19 @@
 type Props = {
-    add: (texto:string)=> void;
+    add: (texto:string)=> void; // función para crear la tarea
 }
 
 export default function Input({add}: Props) {
+  // Funcionamiento del formulario
   function submitHandler(e:React.FormEvent<HTMLFormElement>){
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const textData = formData.get('tareaInput')
+
+    // El input tiene algún dato?
     if(textData && typeof textData === "string"){
       const input = document.getElementById('tareaInput') as HTMLInputElement | null
-      add(textData);
       if(input){
+        add(textData);
         input.value = '';
       }
     }

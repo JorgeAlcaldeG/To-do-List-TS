@@ -1,33 +1,15 @@
-import { useState, useEffect } from 'react';
 import './App.css'
 import UseTareas from './hooks/UseTareas';
+import UseDarkMode from './hooks/UseDarkMode.tsx';
 import Input from './components/Input.tsx';
 import TaskContainer from './components/TaskContainer.tsx';
 function App() {
-  const { tareas, addTarea, delAllTareas } = UseTareas();
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(()=>{
-    const mode = localStorage.getItem('darkMode')
-    if(mode == 'on'){
-      setDarkMode(true);
-    }else{
-      setDarkMode(false);
-    }
-  },[])
-  useEffect(() => {
-    if (darkMode) {
-      // activar modo noche
-      document.documentElement.classList.add("dark");
-      localStorage.setItem('darkMode', 'on')
-    } else {
-      // Desactivar modo noche
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem('darkMode', 'off')
-    }
-  }, [darkMode]);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // CUSTOM HOOKS
+  //  UseTareas
+  const { tareas, addTarea, delAllTareas, delTarea } = UseTareas();
+  // UseDarkMode
+  const {darkMode, toggleDarkMode} = UseDarkMode();
+  
   return (
     <div className='min-h-screen text-black dark:text-white bg-stone-300 dark:bg-stone-900 transition-colors duration-300'>
       <div className='pt-2 pl-5 pr-5 mb-10 w-full flex flex-row justify-between'>
@@ -40,7 +22,7 @@ function App() {
           {
             tareas.length > 0 ?
               (tareas?.map(data => (
-                <TaskContainer key={data.id} text={data.name}/>
+                <TaskContainer key={data.id} text={data.name} delTarea={delTarea} id={data.id}/>
               ))
             ):
             (
