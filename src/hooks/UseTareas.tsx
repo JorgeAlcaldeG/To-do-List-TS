@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export type estadoTarea = 'Pendiente' | 'En progeso' | 'Terminada'
+export type estadoTarea = 'pendiente' | 'progeso' | 'terminada'
 export interface Tarea{
     id:string,
     name:string,
@@ -26,10 +26,13 @@ export default function UseTareas(){
         const newTarea:Tarea = {
             id: newId,
             name: texto,
-            estado: 'Pendiente'
+            estado: 'pendiente'
         } 
         setTareas([...tareas, newTarea]);
     }
-
-    return { tareas, addTarea };
+    function delAllTareas(){
+        localStorage.removeItem('tareas');
+        setTareas([]);
+    }
+    return { tareas, addTarea, delAllTareas };
 }
