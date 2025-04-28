@@ -49,5 +49,15 @@ export default function UseTareas(){
         localStorage.removeItem('tareas');
         setTareas([]);
     }
-    return { tareas, addTarea, delAllTareas, delTarea };
+    function changeState(idTask:string, nuevoEstado:estadoTarea){
+        console.log(idTask)
+        console.log(nuevoEstado)
+
+        setTareas(prevTareas =>
+            prevTareas.map(tarea=>
+                tarea.id == idTask ? {...tarea, estado:nuevoEstado}:tarea
+            )
+        )
+    }
+    return { tareas, addTarea, delAllTareas, delTarea,changeState };
 }

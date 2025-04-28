@@ -1,16 +1,31 @@
+import { estadoTarea } from "../hooks/UseTareas"
 
 type Props = {
     text:string, // Texto de la tarea
     id:string, // Identificador
-    delTarea:(id:string)=>void // Función de borrado individual
-    // TODO: cambioEstado:(id:string)=>void //Función Onclick en el texto
+    delTarea:(id:string)=>void, // Función de borrado individual
+    estado:estadoTarea // 'pendiente' | 'progeso' | 'terminada'
+    cambioEstado:(id:string, nuevoEstado:estadoTarea)=>void //Función Onclick en el texto
 }
 
-export default function TaskContainer({text, delTarea, id}: Props) {
+export default function TaskContainer({text, delTarea, id, cambioEstado,estado}: Props) {
+  
+  var nextState:estadoTarea = 'pendiente';
+  var fontStyles = "w-9/10"
+  if(estado == 'pendiente'){
+    nextState = 'progeso'
+  }else if(estado == 'progeso'){
+    fontStyles +=" font-bold"
+    nextState = 'terminada'
+  }else{
+    fontStyles +=" line-through decoration-black decoration-2"
+    nextState = 'pendiente'
+  }
+
   return (
-    <div className="flex flex-row w-full rounded-sm mt-3 mb-3 p-3 bg-violet-400 text-white dark:bg-violet-200 dark:text-black transition-colors duration-300">
-        <p className="w-9/10">{text}</p>
-        <button onClick={()=>{delTarea(id)}} className="w-1/10">Borrar</button>
+    <div onClick={()=>{cambioEstado(id,nextState)}} className="flex flex-row w-full cursor-pointer rounded-sm mt-3 mb-3 p-3 bg-violet-400 text-white hover:shadow-[inset_0_-2px_4px_rgba(0,0,0,0.6)] dark:bg-violet-200 dark:text-black transition-colors duration-300">
+        <p className={fontStyles}>{text}</p>
+        <button onClick={()=>{delTarea(id)}} className="w-1/10 cursor-pointer">Borrar</button>
     </div>
   )
 }

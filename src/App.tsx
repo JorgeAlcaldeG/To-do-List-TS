@@ -6,7 +6,7 @@ import TaskContainer from './components/TaskContainer.tsx';
 function App() {
   // CUSTOM HOOKS
   //  UseTareas
-  const { tareas, addTarea, delAllTareas, delTarea } = UseTareas();
+  const { tareas, addTarea, delAllTareas, delTarea, changeState } = UseTareas();
   // UseDarkMode
   const {darkMode, toggleDarkMode} = UseDarkMode();
   
@@ -22,7 +22,7 @@ function App() {
           {
             tareas.length > 0 ?
               (tareas?.map(data => (
-                <TaskContainer key={data.id} text={data.name} delTarea={delTarea} id={data.id}/>
+                <TaskContainer key={data.id} text={data.name} delTarea={delTarea} id={data.id} estado={data.estado} cambioEstado={changeState} />
               ))
             ):
             (
