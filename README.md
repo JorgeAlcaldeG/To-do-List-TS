@@ -12,11 +12,13 @@ Create a To-do list app witch allows to:
 - Create and delete task
 - Mark task as finished
 - Filtering by state
-- Save data using localStorage
+- Save data using localStorage (tasks and night mode)
 - Responsive design
+- Enable/disable night mode
 
 ## Technologies used
 
 - React
 - TypeScript
 - Tailwind
+- Local storage
