@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // Estados de la tarea
 export type estadoTarea = 'pendiente' | 'progeso' | 'terminada'
-// Objeto tareas
+// Tareas
 export interface Tarea{
     id:string,
     name:string,
@@ -27,8 +27,7 @@ export default function UseTareas(){
         localStorage.setItem('tareas', JSON.stringify(tareas))
     },[tareas])
 
-    // Finciones para gestionar las tareas
-
+    // Funciones para gestionar las tareas
     // Creación
     function addTarea(texto:string){
         const newId = uuidv4()

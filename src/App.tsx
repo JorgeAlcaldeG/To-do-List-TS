@@ -3,17 +3,28 @@ import UseTareas from './hooks/UseTareas';
 import UseDarkMode from './hooks/UseDarkMode.tsx';
 import Input from './components/Input.tsx';
 import TaskContainer from './components/TaskContainer.tsx';
+import MoonIcon from './components/MoonIcon.tsx';
+import SunIcon from './components/SunIcon.tsx';
+
 function App() {
   // CUSTOM HOOKS
   //  UseTareas
   const { tareas, addTarea, delAllTareas, delTarea, changeState } = UseTareas();
   // UseDarkMode
   const {darkMode, toggleDarkMode} = UseDarkMode();
-  
+
+  const iconStyle = 'w-2/3 cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 inline-block text-stone-900 dark:text-stone-300 hover:text-blue-900 dark:hover:text-yellow-500'
+
   return (
     <div className='min-h-screen text-black dark:text-white bg-stone-300 dark:bg-stone-900 transition-colors duration-300'>
       <div className='pt-2 pl-5 pr-5 mb-10 w-full flex flex-row justify-between'>
-        <button onClick={toggleDarkMode}>{darkMode?'Desactivar modo noche':'Activar modo noche'}</button>
+        <div>
+          <button onClick={toggleDarkMode}>
+              {darkMode ? <SunIcon style={iconStyle} /> : <MoonIcon style={iconStyle} />}
+              {/* <img src={darkMode ? sun : moon} className="w-full cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 inline-block"/>
+              svg */}
+          </button>
+        </div>
         <button onClick={delAllTareas}>Borrar todo</button>
       </div>
       <div className="pt-3 rounded-2xl w-1/2 m-auto bg-stone-100 drop-shadow-lg drop-shadow-stone-600 dark:drop-shadow-violet-300 dark:bg-stone-600 transition-colors duration-300">
