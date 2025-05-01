@@ -27,7 +27,7 @@ export default function TaskContainer({text, delTarea, id, cambioEstado,estado}:
         <div className="w-full">
           <p className={fontStyles}>{text}</p>
         </div>
-        <button onClick={()=>{delTarea(id)}} className="w-1/10 cursor-pointer bg-amber-500">Borrar</button>
+        <button onClick={()=>{delTarea(id)}} className="w-1/10 cursor-pointer font-semibold rounded-sm border-solid border-3 border-amber-400 hover:bg-amber-400 dark:border-amber-500  hover:dark:bg-amber-500  transition-colors duration-300" >Borrar</button>
     </div>
   )
 }
