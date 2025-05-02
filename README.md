@@ -5,7 +5,7 @@ The goal is to build a functional application where I can practice key concepts 
 
 ### Live Preview
 
-Check out the live version of the app: [Live Site]([https://tu-app.vercel.app](https://to-do-list-ts-umber.vercel.app/))
+Check out the live version of the app: [Live site](https://to-do-list-ts-umber.vercel.app/)
 
 ## Objective
 
