@@ -3,7 +3,9 @@
 This project was created as a personal exercise to strengthen my knowledge of **React** and **TypeScript**.  
 The goal is to build a functional application where I can practice key concepts such as typing props, state and functions, creating reusable components and using hooks.
 
-It is currently in its early development stage.
+### Live Preview
+
+Check out the live version of the app: [Live Site]([https://tu-app.vercel.app](https://to-do-list-ts-umber.vercel.app/))
 
 ## Objective
 
