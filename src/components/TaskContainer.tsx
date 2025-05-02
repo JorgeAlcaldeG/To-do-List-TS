@@ -24,10 +24,10 @@ export default function TaskContainer({text, delTarea, id, cambioEstado,estado}:
 
   return (
     <div onClick={()=>{cambioEstado(id,nextState)}} className="flex flex-row items-center w-full cursor-pointer rounded-sm mt-3 mb-3 p-3 bg-violet-400 text-white hover:shadow-[inset_0_-2px_4px_rgba(0,0,0,0.6)] dark:bg-violet-200 dark:text-black transition-colors duration-300">
-        <div className="w-full">
+        <div className="w-7/10 md:w-9/10">
           <p className={fontStyles}>{text}</p>
         </div>
-        <button onClick={()=>{delTarea(id)}} className="w-1/10 cursor-pointer font-semibold rounded-sm border-solid border-3 border-amber-400 hover:bg-amber-400 dark:border-amber-500  hover:dark:bg-amber-500  transition-colors duration-300" >Borrar</button>
+        <button onClick={()=>{delTarea(id)}} className="w-3/10 cursor-pointer font-semibold rounded-sm border-solid border-3 p-1 border-amber-400 hover:bg-amber-400 dark:border-amber-500  hover:dark:bg-amber-500  transition-colors duration-300 md:w-1/10" >Borrar</button>
     </div>
   )
 }
