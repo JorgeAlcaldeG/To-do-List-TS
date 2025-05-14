@@ -49,8 +49,8 @@ export default function UseTareas(){
         setTareas([]);
     }
     function changeState(idTask:string, nuevoEstado:estadoTarea){
-        console.log(idTask)
-        console.log(nuevoEstado)
+        // console.log(idTask)
+        // console.log(nuevoEstado)
 
         setTareas(prevTareas =>
             prevTareas.map(tarea=>
