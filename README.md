@@ -24,6 +24,7 @@ Create a To-do list app witch allows to:
 - TypeScript
 - Tailwind
 - Local storage
+- Jest + React testing library
 
 ## Features
 
