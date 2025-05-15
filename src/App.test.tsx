@@ -61,4 +61,15 @@ describe("<App />",()=>{
         fireEvent.click(task)
         expect(task).toHaveClass("line-through")
     })
+    test("mode button is working",()=>{
+        render(<App />)
+        const buttons = screen.getAllByRole('button')
+        fireEvent.click(buttons[0])
+        
+        expect(document.documentElement).toHaveClass("dark")
+        
+        fireEvent.click(buttons[0])
+
+        expect(document.documentElement).not.toHaveClass("dark")
+    })
 })
