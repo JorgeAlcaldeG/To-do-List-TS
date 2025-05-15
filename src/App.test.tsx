@@ -1,4 +1,4 @@
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import App from "./App";
 
 describe("<App />",()=>{
@@ -18,5 +18,47 @@ describe("<App />",()=>{
 
         fireEvent.click(tareaBtn)
         expect(screen.queryByText('testing')).not.toBeInTheDocument();
+    })
+
+    test("Task is reating without text?",()=>{
+        render(<App />);
+        const inputBtn = screen.getByText("Crear");
+        fireEvent.click(inputBtn);
+        expect(screen.getByText("Aún no hay tareas creadas"))
+    })
+
+    test("Delete all is working",async ()=>{
+        render(<App />)
+        const inputBtn = screen.getByText("Crear");
+        const inputTxt = screen.getByPlaceholderText("Escribe tu nueva tarea");
+        fireEvent.change(inputTxt,{target:{value:'test1'}})
+        fireEvent.click(inputBtn)
+
+        fireEvent.change(inputTxt,{target:{value:'test2'}})
+        fireEvent.click(inputBtn)
+
+        await waitFor(()=>{
+            expect(screen.queryByText("Aún no hay tareas creadas")).not.toBeInTheDocument();
+        })
+
+        const delAllBtn = screen.getByText("Borrar todo")
+
+        fireEvent.click(delAllBtn);
+        expect(screen.getByText("Aún no hay tareas creadas")).toBeInTheDocument();
+    })
+
+    test("Task's stante changes",()=>{
+        render(<App />)
+        const inputBtn = screen.getByText("Crear");
+        const inputTxt = screen.getByPlaceholderText("Escribe tu nueva tarea");
+
+        fireEvent.change(inputTxt, {target:{value:'test1'}});
+        fireEvent.click(inputBtn)
+
+        const task = screen.getByText("test1");
+        fireEvent.click(task)
+        expect(task).toHaveClass("font-bold")
+        fireEvent.click(task)
+        expect(task).toHaveClass("line-through")
     })
 })
